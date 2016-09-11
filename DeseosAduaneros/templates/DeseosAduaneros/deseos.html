@@ -1,0 +1,46 @@
+{% load static %}
+{# load the tag library #}
+{% load bootstrap3 %}
+
+{# load css and javascript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+|<div class="panel panel-primary">
+<h1 align="center"> Deseos de {{ personaje.nombre }}</h1>
+</div>
+
+<div class="align-r">
+    <p class="align-right">
+        <a class="btn btn-group-vertical btn-success" href="{% url 'DeseosAduaneros:registro_deseo' %}"> Registrar Deseo</a>
+        <a class="btn btn-default" href="{%  url 'DeseosAduaneros:index' %}">Cancelar</a>
+    </p>
+</div>
+
+<table class="table table-striped table-bordered table-responsive">
+    <thead>
+        <tr>
+            <td class="text-uppercase text-center col-md-9"><strong>Descripción</strong></td>
+            <td class="text-uppercase  text-center"><strong>Acciones</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if lista_deseos %}
+            {% for deseo in lista_deseos %}
+                <tr>
+                    <td class="text-capitalize">{{ deseo.deseo }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'DeseosAduaneros:actualiza_deseo' deseo.id %}"> Editar</a>
+                        <a class="btn btn-danger" href="{% url 'DeseosAduaneros:elimina_deseo' deseo.id %}"> Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        {% else %}
+            <h1> No hay registro de deseos</h1>
+        {% endif %}
+
+
+    </tbody>
+</table>

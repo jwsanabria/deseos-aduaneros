@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+{# load the tag library #}
+{% load bootstrap3 %}
+
+{# load css and javascript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+</head>
+<body>
+<div class="panel panel-primary" >
+<h1 align="center">Regitro de deseos</h1>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success" type="submit">Guardar</button>
+    <a class="btn btn-default" href="{%  url 'DeseosAduaneros:index' %}">Cancelar</a>
+</form>
+</body>
+</html>

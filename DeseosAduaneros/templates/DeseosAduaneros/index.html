@@ -1,0 +1,30 @@
+<html>
+{% load static %}
+{# load the tag library #}
+{% load bootstrap3 %}
+
+{# load css and javascript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="panel panel-primary" >
+<h1 align="center">Deseos Aduaneros</h1>
+</div>
+
+{% for personaje in lista_personajes %}
+    {% if forloop.first %}<div class="row">{% endif %}
+    <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <a href="/deseos/{{personaje.id}}" >
+                    <img class="img-responsive img-rounded" src="{{ personaje.imagen }}" width="150" height="178"/>
+                </a>
+                <div class="caption">
+                    <h3 class="text-center">{{ personaje.nombre }}</h3>
+
+                </div>
+            </div>
+    </div>
+    {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+    {% if forloop.last %}</div>{% endif %}
+{% endfor %}
+
